@@ -1,1 +1,4 @@
-export declare const Greeter: (name: string) => string;
+interface Date {
+    getTimestamp(): number;
+    toDatetimeFormat(): string;
+}
