@@ -1,25 +1,62 @@
 interface Date {
-  getTimestamp(): number;
+  /**
+   * returns a date string formatted as YYYY-MMDDTHH:MM:SS.
+   *  compatible with datetime-local input
+   */
   toDatetimeFormat(): string;
+  /**
+   * returns a date string formatted as YYYYMMDDHHMMSS.
+   *  compatible with datetime-local input
+   */
+  YYYYMMDDHHMMSS(): string;
+  /**
+   * returns a date string formatted as YYYY-MMDDTHH:MM:SS.
+   *  compatible with datetime-local input
+   */
+  YYYY_MM_DDTHHMMSS(): string;
 }
-
-Date.prototype.getTimestamp = function () {
-  return this.getTime();
+function pad2(n: number) {
+  // always returns a string
+  return (n < 10 ? '0' : '') + n;
+}
+Date.prototype.toDatetimeFormat = function () {
+  return (
+    this.getFullYear() +
+    '-' +
+    pad2(this.getMonth() + 1) +
+    '-' +
+    pad2(this.getDate()) +
+    ' ' +
+    pad2(this.getHours()) +
+    ':' +
+    pad2(this.getMinutes())
+  );
 };
 
-/**
- * Creates an instance of documenter.
- */
-Date.prototype.toDatetimeFormat = function () {
-  function pad2(n: number) {  // always returns a string
-    return (n < 10 ? '0' : '') + n;
-  }
+Date.prototype.YYYYMMDDHHMMSS = function () {
+  return (
+    this.getFullYear() +
+    pad2(this.getMonth() + 1) +
+    pad2(this.getDate()) +
+    pad2(this.getHours()) +
+    pad2(this.getMinutes()) +
+    pad2(this.getSeconds())
+  );
+};
 
-  return this.getFullYear() + "-" +
-    pad2(this.getMonth() + 1) + "-" +
-    pad2(this.getDate()) + " " +
-    pad2(this.getHours()) + ":" +
-    pad2(this.getMinutes())
-  // pad2(this.getSeconds());
-}
-
+Date.prototype.YYYY_MM_DDTHHMMSS = function () {
+  // YYYY-MMDDTHH:MM:SS
+  return (
+    this.getFullYear() +
+    '-' +
+    pad2(this.getMonth() + 1) +
+    '-' +
+    pad2(this.getDate()) +
+    'T' +
+    pad2(this.getHours()) +
+    ':' +
+    pad2(this.getMinutes()) +
+    ':' +
+    pad2(this.getSeconds())
+  );
+};
