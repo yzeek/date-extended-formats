@@ -2,19 +2,14 @@ type Formats = import('./FormatesEnum').Formats;
 
 interface Date {
   /**
- * returns a date string formatted as the requested format.
- *  compatible with datetime-local input
- */
+   *  returns a date string formatted as the requested format.
+   *  compatible with datetime-local input
+   */
   toFormat(format: Formats): string;
 }
 function pad2(n: number) {
-  // always returns a string
   return (n < 10 ? '0' : '') + n;
 }
-
-// Date.prototype.toDatetimeFormat = function () {
-
-// };
 
 Date.prototype.toFormat = function (format: Formats): string {
   const { Formats: formats } = require('./FormatesEnum');
