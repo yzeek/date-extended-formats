@@ -1,6 +1,6 @@
 {
   "name": "date_extentions",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Date extentions",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -13,7 +13,7 @@
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
-    "postversion": "git push  --force  && git push --tags"
+    "postversion": "git push    && git push --tags"
   },
   "files": [
     "lib/**/*"
