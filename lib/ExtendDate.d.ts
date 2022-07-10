@@ -1,4 +1,4 @@
-import { Formats } from "./FormatesEnum";
+import { Formats } from './FormatesEnum';
 /**
  * @param string: date string
  * @param Format: the format in which the Date entered
