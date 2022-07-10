@@ -67,4 +67,3 @@ test('to_year_month_date_hours_minutes ', () => {
   console.log(d);
   expect(d.toFormat(Formats['YYYY-MM-DD HH:MM'])).toBe('2022-07-29 22:59');
 });
-

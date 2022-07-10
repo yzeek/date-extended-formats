@@ -1,5 +1,4 @@
-import { Formats } from "./FormatesEnum";
-
+import { Formats } from './FormatesEnum';
 
 /**
  * @param string: date string
@@ -8,9 +7,9 @@ import { Formats } from "./FormatesEnum";
 export class ExtendDate extends Date {
   static dateFrom(datestring: string, format: Formats): Date | undefined {
     switch (format) {
-      case Formats["YYYY-MM-DD"]:
+      case Formats['YYYY-MM-DD']:
         return this.fromYYYY_MM_DD(datestring);
-      case Formats["MM/DD/YY"]:
+      case Formats['MM/DD/YY']:
         return this.from_Month_Day_Year_with_leading_zeros(datestring);
       case Formats['YY/MM/DD']:
         return this.from_Year_Month_Day_with_leading_zeros(datestring);
@@ -18,18 +17,18 @@ export class ExtendDate extends Date {
         return this.from_date_month_year_with_slashes(datestring);
       case Formats.YYYYMMDDHHMMSS:
         return this.from_year_month_date_hours_minutes_seconds(datestring);
-      case Formats["YYYY-MM-DD HH:MM"]:
-        return this.from_year_month_date_hours_minutes(datestring)
+      case Formats['YYYY-MM-DD HH:MM']:
+        return this.from_year_month_date_hours_minutes(datestring);
       default:
-        throw 'format not implemented'
+        throw new Error('format not implemented');
     }
   }
   private static from_year_month_date_hours_minutes(dateString: string): Date {
     const parts = dateString.split(' ');
-    let date = parts[0];
-    let dateArr = date.split('-');
-    let time = parts[1];
-    let timeArr = time.split(":");
+    const date = parts[0];
+    const dateArr = date.split('-');
+    const time = parts[1];
+    const timeArr = time.split(':');
 
     const d = new Date();
     d.setFullYear(Number(dateArr[0]));
@@ -38,7 +37,6 @@ export class ExtendDate extends Date {
     d.setHours(Number(timeArr[0]));
     d.setMinutes(Number(timeArr[1]));
 
-    console.log(d)
     return d;
   }
   private static from_year_month_date_hours_minutes_seconds(dateString: string): Date {

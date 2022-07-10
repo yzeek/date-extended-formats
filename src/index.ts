@@ -36,12 +36,10 @@ Date.prototype.toFormat = function (format: Formats): string {
     case formats['YY/MM/DD']:
       return to_year_month_date_with_slashes(this);
     case formats['YYYY-MM-DD HH:MM']:
-      return to_year_month_date_hours_minutes(this)
+      return to_year_month_date_hours_minutes(this);
     default:
-      throw 'format not implemented'
-
+      throw new Error('format not implemented');
   }
-
 };
 
 function to_year_month_date_hours_minutes(date: Date): string {
@@ -58,11 +56,7 @@ function to_year_month_date_hours_minutes(date: Date): string {
   );
 }
 function to_year_month_date_with_slashes(date: Date): string {
-  return date.getFullYear() +
-    '/'
-    + pad2(date.getMonth() + 1)
-    + '/'
-    + pad2(date.getDate());
+  return date.getFullYear() + '/' + pad2(date.getMonth() + 1) + '/' + pad2(date.getDate());
 }
 function to_full_year_month_date(date: Date): string {
   return date.getFullYear() + '-' + pad2(date.getMonth() + 1) + '-' + pad2(date.getDate());
