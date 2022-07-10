@@ -8,12 +8,12 @@ interface Date {
    * returns a date string formatted as YYYYMMDDHHMMSS.
    *  compatible with datetime-local input
    */
-  YYYYMMDDHHMMSS(): string;
+  toYYYYMMDDHHMMSS(): string;
   /**
    * returns a date string formatted as YYYY-MMDDTHH:MM:SS.
    *  compatible with datetime-local input
    */
-  YYYY_MM_DDTHHMMSS(): string;
+  toYYYY_MM_DDTHHMMSS(): string;
 }
 function pad2(n: number) {
   // always returns a string
@@ -33,7 +33,7 @@ Date.prototype.toDatetimeFormat = function () {
   );
 };
 
-Date.prototype.YYYYMMDDHHMMSS = function () {
+Date.prototype.toYYYYMMDDHHMMSS = function () {
   return (
     this.getFullYear() +
     pad2(this.getMonth() + 1) +
@@ -44,7 +44,7 @@ Date.prototype.YYYYMMDDHHMMSS = function () {
   );
 };
 
-Date.prototype.YYYY_MM_DDTHHMMSS = function () {
+Date.prototype.toYYYY_MM_DDTHHMMSS = function () {
   // YYYY-MMDDTHH:MM:SS
   return (
     this.getFullYear() +
