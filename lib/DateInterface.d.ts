@@ -1,4 +1,4 @@
-declare type Formats = import('./FormatesEnum').Formats;
+declare type Formats = import("./FormatesEnum").Formats;
 interface Date {
     /**
      *  returns a date string formatted as the requested format.
@@ -7,6 +7,7 @@ interface Date {
     toFormat(format: Formats): string;
 }
 declare function pad2(n: number): string;
+declare function to_year_month_date_hours_minutes_seconds(date: Date): string;
 declare function to_year_month_date_hours_minutes(date: Date): string;
 declare function to_year_month_date_with_slashes(date: Date): string;
 declare function to_full_year_month_date(date: Date): string;
