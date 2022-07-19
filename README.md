@@ -35,6 +35,7 @@ const newDate = ExtendDate.dateFrom( dateString, Formats['YYYY-MM-DD']);
 * DD/MM/YY
 * YYYY-MMDDTHH:MM:SS
 * YYYYMMDDHHMMSS
+* YYYYMMDDHHMM
 * YYYY-MM-DD HH:MM
 
 * More formats will be added with time
