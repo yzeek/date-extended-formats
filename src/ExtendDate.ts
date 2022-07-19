@@ -22,12 +22,14 @@ export class ExtendDate extends Date {
       case Formats.YYYYMMDDHHMMSS:
         return this.from_year_month_date_hours_minutes_seconds(datestring);
       case Formats["YYYY-MM-DD HH:MM"]:
+        return this.from_year_month_date_hours_minutes_dashes_colon(datestring);
+      case Formats.YYYYMMDDHHMM:
         return this.from_year_month_date_hours_minutes(datestring);
       default:
         throw new Error("format not implemented");
     }
   }
-  private static from_year_month_date_hours_minutes(dateString: string): Date {
+  private static from_year_month_date_hours_minutes_dashes_colon(dateString: string): Date {
     const parts = dateString.split(" ");
     const date = parts[0];
     const dateArr = date.split("-");
@@ -54,6 +56,7 @@ export class ExtendDate extends Date {
 
     return d;
   }
+
   private static from_year_month_date_hours_minutes_seconds(dateString: string): Date {
     const year = dateString.substring(0, 4);
     const month = dateString.substring(4, 6);
@@ -64,9 +67,7 @@ export class ExtendDate extends Date {
 
     const ds = date + "-" + month + "-" + year;
     if (!this.validate_Date(ds)) throw new Error("Invalid date Error");
-
     if (!this.validateTime(Number(hours), Number(minutes), Number(seconds))) throw new Error("Invalid time Error");
-
     const d = new Date();
     d.setFullYear(Number(year));
     d.setMonth(Number(month) - 1);
@@ -74,6 +75,25 @@ export class ExtendDate extends Date {
     d.setHours(Number(hours));
     d.setMinutes(Number(minutes));
     d.setSeconds(Number(seconds));
+    return d;
+  }
+  private static from_year_month_date_hours_minutes(dateString: string): Date {
+    const year = dateString.substring(0, 4);
+    const month = dateString.substring(4, 6);
+    const date = dateString.substring(6, 8);
+    const hours = dateString.substring(8, 10);
+    const minutes = dateString.substring(10, 12);
+    const seconds = dateString.substring(12, 14);
+
+    const ds = date + "-" + month + "-" + year;
+    if (!this.validate_Date(ds)) throw new Error("Invalid date Error");
+    if (!this.validateTime(Number(hours), Number(minutes), Number(seconds))) throw new Error("Invalid time Error");
+    const d = new Date();
+    d.setFullYear(Number(year));
+    d.setMonth(Number(month) - 1);
+    d.setDate(Number(date));
+    d.setHours(Number(hours));
+    d.setMinutes(Number(minutes));
     return d;
   }
   private static from_Year_Month_Day_with_leading_zeros(dateString: string): Date {

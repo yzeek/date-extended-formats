@@ -1,5 +1,4 @@
 type Formats = import("./FormatesEnum").Formats;
-
 interface Date {
   /**
    *  returns a date string formatted as the requested format.
@@ -10,7 +9,6 @@ interface Date {
 function pad2(n: number) {
   return (n < 10 ? "0" : "") + n;
 }
-
 Date.prototype.toFormat = function (format: Formats): string {
   const { Formats: formats } = require("./FormatesEnum");
   switch (format) {
@@ -25,15 +23,25 @@ Date.prototype.toFormat = function (format: Formats): string {
     case formats["YY/MM/DD"]:
       return to_year_month_date_with_slashes(this);
     case formats["YYYY-MM-DD HH:MM"]:
-      return to_year_month_date_hours_minutes(this);
+      return to_year_month_date_hours_minutes_dashes_colon(this);
     case formats.YYYYMMDDHHMMSS:
-      return to_year_month_date_hours_minutes_seconds(this);
+      return to_year_month_date_hours_minutes_seconds_dashes_colons(this);
+    case formats.YYYYMMDDHHMM:
+      return to_year_month_date_hours_minutes(this);
     default:
       throw new Error("format not implemented");
   }
 };
-
-function to_year_month_date_hours_minutes_seconds(date: Date) {
+function to_year_month_date_hours_minutes(date: Date) {
+  return (
+    date.getFullYear() +
+    pad2(date.getMonth() + 1) +
+    pad2(date.getDate()) +
+    pad2(date.getHours()) +
+    pad2(date.getMinutes())
+  );
+}
+function to_year_month_date_hours_minutes_seconds_dashes_colons(date: Date) {
   return (
     date.getFullYear() +
     pad2(date.getMonth() + 1) +
@@ -43,8 +51,7 @@ function to_year_month_date_hours_minutes_seconds(date: Date) {
     pad2(date.getSeconds())
   );
 }
-
-function to_year_month_date_hours_minutes(date: Date): string {
+function to_year_month_date_hours_minutes_dashes_colon(date: Date): string {
   return (
     date.getFullYear() +
     "-" +

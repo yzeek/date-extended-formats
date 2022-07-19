@@ -32,6 +32,12 @@ test("from_year_month_date_hours_minutes_seconds YYYYMMDDHHMMSS", () => {
   let d = ExtendDate.dateFrom(str, Formats["YYYYMMDDHHMMSS"]);
   expect(d?.toString()).toBe("Sun Jul 31 2022 12:35:59 GMT+0300 (Israel Daylight Time)");
 });
+test("from_year_month_date_hours_minutes_seconds YYYYMMDDHHMM", () => {
+  let str = "202207311235";
+  let d = ExtendDate.dateFrom(str, Formats["YYYYMMDDHHMM"]);
+  expect(d?.toFormat(Formats.YYYYMMDDHHMM)).toBe("202207311235");
+});
+
 test("from_Month_Day_Year_with_no_zeros", () => {
   let str = "7/31/2022";
   let d = ExtendDate.dateFrom(str, Formats["MM/DD/YY"])!.toDateString();
@@ -92,4 +98,9 @@ test("invalid time", () => {
 test("to_year_month_date_hours_minutes_seconds ", () => {
   let d = new Date(2022, 6, 29, 22, 59, 50);
   expect(d.toFormat(Formats["YYYYMMDDHHMMSS"])).toBe("20220729225950");
+});
+
+test("to_year_month_date_hours_minutes ", () => {
+  let d = new Date(2022, 6, 29, 22, 59, 50);
+  expect(d.toFormat(Formats["YYYYMMDDHHMM"])).toBe("202207292259");
 });
