@@ -2,6 +2,13 @@
 ### Easy Date formatting and date creation utilities to streamline working with dates. 
 ___
 \
+
+*import module at the top of your project to add functionality to base date class*
+
+```javascript
+import 'date_extentions/lib/DateInterface';
+```
+
 *to Format dates import the formats enum*
  
 ```javascript
@@ -10,10 +17,8 @@ import { Formats } from 'date_extentions/lib/FormatesEnum'
 `
 format to any of the available formats
 ```javascript
-
 let newDate = new Date();
 newDate.toFormat(Formats['YYYY-MM-DD HH:MM']))
-
 ```
 
 to create dates from formatted strings:
