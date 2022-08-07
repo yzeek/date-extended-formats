@@ -1,3 +1,3 @@
-import "./FormatesEnum";
+import "./FormatsEnum";
 import "./DateInterface";
 import "./ExtendDate";

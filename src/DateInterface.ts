@@ -1,4 +1,4 @@
-type Formats = import("./FormatesEnum").Formats;
+type Formats = import("./FormatsEnum").Formats;
 interface Date {
   /**
    *  returns a date string formatted as the requested format.
@@ -10,7 +10,7 @@ function pad2(n: number) {
   return (n < 10 ? "0" : "") + n;
 }
 Date.prototype.toFormat = function (format: Formats): string {
-  const { Formats: formats } = require("./FormatesEnum");
+  const { Formats: formats } = require("./FormatsEnum");
   switch (format) {
     case formats["MM/DD/YY"]:
       return to_month_date_year_with_slashes(this);
@@ -28,10 +28,16 @@ Date.prototype.toFormat = function (format: Formats): string {
       return to_year_month_date_hours_minutes_seconds_dashes_colons(this);
     case formats.YYYYMMDDHHMM:
       return to_year_month_date_hours_minutes(this);
+    case formats.YYYYMMDD:
+      return to_year_month_date(this);
     default:
       throw new Error("format not implemented");
   }
 };
+
+function to_year_month_date(date: Date) {
+  return date.getFullYear() + pad2(date.getMonth() + 1) + pad2(date.getDate());
+}
 function to_year_month_date_hours_minutes(date: Date) {
   return (
     date.getFullYear() +

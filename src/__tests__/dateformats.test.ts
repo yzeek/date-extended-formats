@@ -1,6 +1,6 @@
+import { Formats } from "./../FormatsEnum";
 import "../index";
 import { ExtendDate } from "../ExtendDate";
-import { Formats } from "../FormatesEnum";
 import { test, expect } from "@jest/globals";
 
 test("fromYYYY_MM_DD", () => {
@@ -103,4 +103,15 @@ test("to_year_month_date_hours_minutes_seconds ", () => {
 test("to_year_month_date_hours_minutes ", () => {
   let d = new Date(2022, 6, 29, 22, 59, 50);
   expect(d.toFormat(Formats["YYYYMMDDHHMM"])).toBe("202207292259");
+});
+
+test("from YYYYMMDD ", () => {
+  let d = ExtendDate.dateFrom("20220729", Formats.YYYYMMDD);
+  let r = d?.toFormat(Formats["DD/MM/YY"]);
+  expect(r).toBe("29/07/2022");
+});
+
+test("to YYYYMMDD ", () => {
+  let d = new Date(2022, 6, 29);
+  expect(d.toFormat(Formats.YYYYMMDD)).toBe("20220729");
 });
