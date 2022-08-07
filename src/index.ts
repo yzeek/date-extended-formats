@@ -1,3 +1,3 @@
-import "./FormatsEnum";
 import "./DateInterface";
-import "./ExtendDate";
+import { Formats } from "./FormatsEnum";
+import { ExtendDate } from "./ExtendDate";
