@@ -100,11 +100,11 @@ test("to_year_month_date_hours_minutes ", () => {
   expect(r).toBe("09/15/2022");
 });
 test("spread ", () => {
-  let d = new Date(2022, 8, 15, 22, 59, 50);
+  let d = new Date(2022, 8, 15, 5, 59, 50);
   const { date, dayLetter, hebMonth, year, hour } = d.spreadDate();
   expect(date).toBe("15");
   expect(dayLetter).toBe("ה");
   expect(hebMonth).toBe("ספטמבר");
   expect(year).toBe("2022");
-  expect(hour).toBe("22:59");
+  expect(hour).toBe("05:59");
 });

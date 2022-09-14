@@ -37,7 +37,7 @@ Date.prototype.spreadDate = function (): SpreadDate {
     date: this.getDate().toString(),
     hebMonth: months[this.getMonth()],
     year: this.getFullYear().toString(),
-    hour: `${this.getHours()}:${this.getMinutes()}`,
+    hour: `${pad2(this.getHours())}:${pad2(this.getMinutes())}`,
   } as SpreadDate;
 };
 
