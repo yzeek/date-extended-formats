@@ -13,6 +13,7 @@ interface SpreadDate {
   date: string;
   hebMonth: string;
   year: string;
+  hour: string;
 }
 
 Date.prototype.spreadDate = function (): SpreadDate {
@@ -36,6 +37,7 @@ Date.prototype.spreadDate = function (): SpreadDate {
     date: this.getDate().toString(),
     hebMonth: months[this.getMonth()],
     year: this.getFullYear().toString(),
+    hour: `${this.getHours()}:${this.getMinutes()}`,
   } as SpreadDate;
 };
 
