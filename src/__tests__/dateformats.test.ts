@@ -1,6 +1,6 @@
 import "../index";
 import { ExtendDate } from "../ExtendDate";
-import { Formats } from "../FormatesEnum";
+import { Formats } from "../FormatsEnum";
 import { test, expect } from "@jest/globals";
 
 test("fromYYYY_MM_DD", () => {
@@ -92,4 +92,13 @@ test("invalid time", () => {
 test("to_year_month_date_hours_minutes_seconds ", () => {
   let d = new Date(2022, 6, 29, 22, 59, 50);
   expect(d.toFormat(Formats["YYYYMMDDHHMMSS"])).toBe("20220729225950");
+});
+
+test("spread ", () => {
+  let d = new Date(2022, 8, 15, 22, 59, 50);
+  const { date, dayLetter, hebMonth, year } = d.spreadDate();
+  expect(date).toBe("15");
+  expect(dayLetter).toBe("ה");
+  expect(hebMonth).toBe("ספטמבר");
+  expect(year).toBe("2022");
 });

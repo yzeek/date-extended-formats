@@ -1,4 +1,4 @@
-type Formats = import("./FormatesEnum").Formats;
+type Formats = import("./FormatsEnum").Formats;
 
 interface Date {
   /**
@@ -6,13 +6,45 @@ interface Date {
    *  compatible with datetime-local input
    */
   toFormat(format: Formats): string;
+  spreadDate(): SpreadDate;
 }
+interface SpreadDate {
+  dayLetter: string;
+  date: string;
+  hebMonth: string;
+  year: string;
+}
+
+Date.prototype.spreadDate = function (): SpreadDate {
+  const days = ["א", "ב", "ג", "ד", "ה", "ו", "ש"];
+  const months = [
+    "ינואר",
+    "פברואר",
+    "מרץ",
+    "אפריל",
+    "מאי",
+    "יוני",
+    "יולי",
+    "אוגוסט",
+    "ספטמבר",
+    "אוקטובר",
+    "נובמבר",
+    "דצמבר",
+  ];
+  return {
+    dayLetter: days[this.getDay()],
+    date: this.getDate().toString(),
+    hebMonth: months[this.getMonth()],
+    year: this.getFullYear().toString(),
+  } as SpreadDate;
+};
+
 function pad2(n: number) {
   return (n < 10 ? "0" : "") + n;
 }
 
 Date.prototype.toFormat = function (format: Formats): string {
-  const { Formats: formats } = require("./FormatesEnum");
+  const { Formats: formats } = require("./FormatsEnum");
   switch (format) {
     case formats["MM/DD/YY"]:
       return to_month_date_year_with_slashes(this);

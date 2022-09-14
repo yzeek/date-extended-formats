@@ -1,4 +1,4 @@
-import { Formats } from "./FormatesEnum";
+import { Formats } from "./FormatsEnum";
 /**
  * @param string: date string
  * @param Format: the format in which the Date entered
@@ -83,11 +83,10 @@ export class ExtendDate extends Date {
     const year = Number(values[0]);
     const ds = pad2(day) + "-" + pad2(month) + "-" + year;
     if (!this.validate_Date(ds)) throw new Error("Invalid date Error");
-
     const d = new Date();
-    d.setDate(day);
-    d.setMonth(month - 1);
     d.setFullYear(year);
+    d.setMonth(month - 1);
+    d.setDate(day);
     return d;
   }
   private static fromYYYY_MM_DD(dateString: string): Date {
@@ -98,9 +97,9 @@ export class ExtendDate extends Date {
     const ds = pad2(Number(day)) + "-" + pad2(Number(month)) + "-" + year;
     if (!this.validate_Date(ds)) throw new Error("Invalid date Error");
     const d = new Date();
-    d.setDate(Number(day));
-    d.setMonth(Number(month) - 1);
     d.setFullYear(Number(year));
+    d.setMonth(Number(month) - 1);
+    d.setDate(Number(day));
     return d;
   }
   private static from_Month_Day_Year_with_leading_zeros(dateString: string): Date {
