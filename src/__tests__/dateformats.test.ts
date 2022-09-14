@@ -93,7 +93,12 @@ test("to_year_month_date_hours_minutes_seconds ", () => {
   let d = new Date(2022, 6, 29, 22, 59, 50);
   expect(d.toFormat(Formats["YYYYMMDDHHMMSS"])).toBe("20220729225950");
 });
-
+test("to_year_month_date_hours_minutes ", () => {
+  let str = "202209151600";
+  let d = ExtendDate.dateFrom(str, Formats["YYYYMMDDHHMM"]);
+  let r = d?.toFormat(Formats["MM/DD/YY"]);
+  expect(r).toBe("09/15/2022");
+});
 test("spread ", () => {
   let d = new Date(2022, 8, 15, 22, 59, 50);
   const { date, dayLetter, hebMonth, year } = d.spreadDate();
