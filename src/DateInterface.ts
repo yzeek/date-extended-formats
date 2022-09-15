@@ -62,6 +62,8 @@ Date.prototype.toFormat = function (format: Formats): string {
       return to_year_month_date_hours_minutes(this);
     case formats.YYYYMMDDHHMMSS:
       return to_year_month_date_hours_minutes_seconds(this);
+    case formats.YYYYMMDDHHMM:
+      return to_YearMonthDateHoursMinutes(this);
     default:
       throw new Error("format not implemented");
   }
@@ -75,6 +77,16 @@ function to_year_month_date_hours_minutes_seconds(date: Date) {
     pad2(date.getHours()) +
     pad2(date.getMinutes()) +
     pad2(date.getSeconds())
+  );
+}
+
+function to_YearMonthDateHoursMinutes(date: Date) {
+  return (
+    date.getFullYear() +
+    pad2(date.getMonth() + 1) +
+    pad2(date.getDate()) +
+    pad2(date.getHours()) +
+    pad2(date.getMinutes())
   );
 }
 

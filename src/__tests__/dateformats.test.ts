@@ -93,6 +93,12 @@ test("to_year_month_date_hours_minutes_seconds ", () => {
   let d = new Date(2022, 6, 29, 22, 59, 50);
   expect(d.toFormat(Formats["YYYYMMDDHHMMSS"])).toBe("20220729225950");
 });
+
+test("to_YearMonthDateHoursMinutes ", () => {
+  let d = new Date(2022, 6, 29, 22, 59, 50);
+  expect(d.toFormat(Formats["YYYYMMDDHHMM"])).toBe("202207292259");
+});
+
 test("to_year_month_date_hours_minutes ", () => {
   let str = "202209151600";
   let d = ExtendDate.dateFrom(str, Formats["YYYYMMDDHHMM"]);
