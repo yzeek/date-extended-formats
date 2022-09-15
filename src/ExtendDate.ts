@@ -23,6 +23,8 @@ export class ExtendDate extends Date {
         return this.from_year_month_date_hours_minutes_seconds(datestring);
       case Formats.YYYYMMDDHHMM:
         return this.from_yearmonthdatehoursminutes(datestring);
+      case Formats.YYYYMMDD:
+        return this.from_year_month_date(datestring);
       case Formats["YYYY-MM-DD HH:MM"]:
         return this.from_year_month_date_hours_minutes(datestring);
       default:
@@ -101,6 +103,21 @@ export class ExtendDate extends Date {
     d.setSeconds(Number(seconds));
     return d;
   }
+
+  private static from_year_month_date(dateString: string): Date {
+    const year = dateString.substring(0, 4);
+    const month = dateString.substring(4, 6);
+    const date = dateString.substring(6, 8);
+
+    const ds = date + "-" + month + "-" + year;
+    if (!this.validate_Date(ds)) throw new Error("Invalid date Error");
+    const d = new Date();
+    d.setFullYear(Number(year));
+    d.setMonth(Number(month) - 1);
+    d.setDate(Number(date));
+    return d;
+  }
+
   private static from_Year_Month_Day_with_leading_zeros(dateString: string): Date {
     const values = dateString.split("/");
     const day = Number(values[2]);
